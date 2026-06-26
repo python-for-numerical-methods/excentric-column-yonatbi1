@@ -1,6 +1,3 @@
-import numpy as np
-from scipy.optimize import bisect
-
 def find_critical_load(L, E, A, r, c, e, sigma_allow):
     """
     L: אורך במ"מ
@@ -13,6 +10,11 @@ def find_critical_load(L, E, A, r, c, e, sigma_allow):
     
     Return: העומס P בניוטון (float)
     """
+    # כתבו כאן את הקוד 
+import numpy as np
+from scipy.optimize import bisect
+
+def find_critical_load(L, E, A, r, c, e, sigma_allow):
     def f(P):
         if P <= 0:
             return -sigma_allow
@@ -25,6 +27,6 @@ def find_critical_load(L, E, A, r, c, e, sigma_allow):
         return sigma_max - sigma_allow
 
     # חסם עליון מבוסס על עומס אוילר התיאורטי
-    p_euler = (np.pi*2 * E * (A * r2)) / (L*2)
+    p_euler = (np.pi**2 * E * (A * r**2)) / (L**2)
     
     return float(bisect(f, 0.01, p_euler * 0.99, xtol=1e-4))
